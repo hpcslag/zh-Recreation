@@ -1,0 +1,18 @@
+#Admin Message Uint
+
+#欲新增一位管理員，請依照表單複製貼上，密碼請用 http://www.md5.cz/ 加密後貼上password欄位
+user:
+  - &admin { username: abdata, password: b4b8daf4b8ea9d39568719e1e320076f }
+  - &admin { username: root, password: b4b8daf4b8ea9d39568719e1e320076f }
+
+#Email system
+email:
+  mail: cacheservs@gmail.com
+  password: 
+
+#manage systen /一頁顯示幾筆資料
+page:
+  max : 4
+
+#system
+host: http://xx.xxx.xx.xx

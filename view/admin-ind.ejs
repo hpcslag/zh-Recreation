@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>個人會員管理</title>
+	</head>
+	<body>
+		<form action="./search/" method="post">
+			搜尋會員 : <input type="text" name="search"> <input type="submit" value="搜尋">
+		</form>
+		<ul>
+			<% for(var i = 0;i<data.length;i++){ %>
+				<li><%= data[i].name %>, 性別: <%= data[i].sex %>,email: <%= data[i].email%>, <a href="./punycode/<%= data[i].name %>">修改</a> </li>
+			<% } %>
+		</ul>
+		<% if(page.total_page==0){ %>
+			只有一個頁面，沒有分頁可以使用
+		<% }else{ 
+
+			for (var i = 0;i<=page.total_page;i++){ %>
+				<a href="<%= i %>"><%= i %></a>
+		<% }} %>
+		<br>
+		<input type="button" onclick="javascript:location.href='../logout'" value="登出"/>
+	</body>
+</html>

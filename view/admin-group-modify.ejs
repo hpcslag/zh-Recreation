@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>會員狀態管理</title>
+	</head>
+	<body>
+		<form action="./modify/post" method="post">
+		<br>
+		<ul>
+			<li>團體名稱: <input type="text" value="<%= data.name %>" name="_name"/></li>
+			<li>業務範圍: <br><textarea name="services"><%= data.services %></textarea></il>
+			<li>負責人: <input type="text" value="<%= data.people %>" name="people"></li>
+			<li>地址 : <input type="text" value="<%= data.address %>" name="address"/> </li>
+			<li>電話 : <input type="text" value="<%= data.phone %>" name="phone"/> </li>
+			<li>傳真 : <input type="text" value="<%= data.fax %>" name="fax"/> </li>
+			<li>核准狀況 : 
+						<% if(data.status){ %> 
+							<span style="color:green">已核准</span> 
+						<% }else{ %> 
+							<span style="color:red">未核准</span> <a href="#" onclick="send()">確認邀請</a> 
+						<% } %>
+			</li>
+			<li>繳費方式: <%= data.payway %></li>
+			<li>繳費證明: <br><img src="../../../<%= data.proof_payment %>" width="320" alt=""></li>
+			<li>申請團體印鑑: <br><img src="../../../<%= data.group_seal %>" width="320" alt=""></li>
+			<li>負責人印鑑: <br><img src="../../../<%= data.charge_seal %>" width="320" alt=""></li>
+			<li>電子信箱:　<input type="text" value="<%= data.email %>" name="email"></il>
+		</ul>
+		<input type="text" readonly="readonly" style="display:none" name="_id" value="<%= data._id %>"/>
+		<input type="submit" value="送出修改"> <input type="button" onclick="javascript:location.href='../../logout'" value="登出"/>
+		</form>
+		<script type="text/javascript">
+			function send(num){
+				window.location = 'responses/<%= data.name %>';
+			}
+		</script>
+	</body>
+</html>

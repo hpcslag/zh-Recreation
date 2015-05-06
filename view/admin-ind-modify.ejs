@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>會員狀態管理</title>
+	</head>
+	<body>
+		<form action="./modify/post" method="post">
+		<br>
+		<ul>
+			<li>姓名: <input type="text" value="<%= data.name %>" name="_name"/></li>
+			<li>性別: <%= data.sex %> </il>
+			<li>出生年月日: <%= data.birthday %> </il>
+			<li>出生地: <%= data.place %> </il>
+			<li>畢業學校: <br><textarea name="edu"><%= data.edu %></textarea></il>
+			<li>經歷: <br> <textarea name="exp"><%= data.exp %></textarea> </il>
+			<li>職業: <input type="text" value="<%= data.job %>" name="job" /> </il>
+			<li>地址(公) : <input type="text" value="<%= data.address_public %>" name="address_public"/> </il>
+			<li>電話(公) : <input type="text" value="<%= data.phone_public %>" name="phone_public"/> </il>
+			<li>傳真(公) : <input type="text" value="<%= data.fax_public %>" name="fax_public"/> </li>
+			<li>地址(私) : <input type="text" value="<%= data.address %>" name="address"/> </li>
+			<li>電話(私) : <input type="text" value="<%= data.phone %>" name="phone"/> </li>
+			<li>傳真(私) : <input type="text" value="<%= data.fax %>" name="fax"/> </li>
+			<li>聯絡方式 : <% if(data.contact == "公"){ %>
+								<input type="radio" class="radio" value="公" name="contact" checked="checked">公 
+								<input type="radio" class="radio" value="宅" name="contact">宅 
+							<% }else{ %>
+								<input type="radio" class="radio" value="公" name="contact">公 
+								<input type="radio" class="radio" value="宅" name="contact" checked="checked">宅 
+							<% } %>
+			</li>
+			<li>專長 : <input type="text" value="<%= data.specialty %>" name="specialty"/> </li>
+			<li>興趣 : <input type="text" value="<%= data.interest %>" name="interest" /> </li>
+			<li>推薦人 (兩位):
+				<ul>
+					<li>第一位: <%= data.invite.invite_one_name %></li>
+					<li>第二位: <%= data.invite.invite_two_name %></li>
+				</ul>
+			</li>
+			<li>邀請人回應狀況 : 
+				<ul>
+					<li>第一位: 
+						<% if(data.invite.invite_one_status){ %> 
+							<span style="color:green">邀請被接受</span> 
+						<% }else{ %> 
+							<span style="color:red">邀請尚未被接受</span> <a href="#" onclick="send(1)">確認邀請</a> 
+						<% } %>
+					</li>
+					<li>第二位: 
+						<% if(data.invite.invite_two_status){ %> 
+							<span style="color:green">邀請被接受</span> 
+						<% }else{ %> 
+							<span style="color:red">邀請尚未被接受</span> <a href="#" onclick="send(2)">確認邀請</a>
+						<% } %>
+					</li>
+				</ul>
+			</li>
+			<li>繳費方式: <%= data.payway %></li>
+			<li>繳費證明: <br><img src="../../../<%= data.proof_payment %>" width="320" alt=""></li>
+			<li>電子信箱:　<input type="text" value="<%= data.email %>" name="email"></il>
+		</ul>
+		<input type="text" readonly="readonly" style="display:none" name="_id" value="<%= data._id %>"/>
+		<input type="submit" value="送出修改"> <input type="button" onclick="javascript:location.href='../../logout'" value="登出"/>
+		</form>
+		<script type="text/javascript">
+			function send(num){
+				if(num == 1){
+					//第一位
+					// 名字 + req/ + 第幾位
+					window.location = 'responses/<%= data.name %>/request/1';
+				}else{
+					window.location = 'responses/<%= data.name %>/request/2';
+				}
+			}
+		</script>
+	</body>
+</html>
